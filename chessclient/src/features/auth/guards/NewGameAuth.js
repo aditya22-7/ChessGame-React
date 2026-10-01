@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Navigate } from "react-router-dom";
-import { checkLoginStatus } from "./Controller";
-import NewGame from "./NewGame";
+import { checkLoginStatus } from "../../../services/Controller";
+import NewGame from "../../lobby/NewGame";
 
 let promise = null;
 

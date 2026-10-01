@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import LogicButton from "./Button";
-import { createNewGame, disconnect, initSocket, logout } from "./Controller";
-import { useLogin } from "./LoginProvider";
-import LoaderText from "./LoaderText";
+import LogicButton from "../../components/Button";
+import { createNewGame, disconnect, initSocket, logout } from "../../services/Controller";
+import { useLogin } from "../auth/LoginProvider";
+import LoaderText from "../../components/LoaderText";
 
 export default function NewGame({ name }) {
 	const nav = useNavigate();

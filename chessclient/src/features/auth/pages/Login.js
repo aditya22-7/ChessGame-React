@@ -3,8 +3,8 @@ import TextField from "@mui/material/TextField";
 import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import LogicButton from "./Button";
-import { checkLogin } from "./Controller.js";
+import LogicButton from "../../../components/Button";
+import { checkLogin } from "../../../services/Controller.js";
 import { useRef } from "react";
 
 export default function Login({ tries }) {

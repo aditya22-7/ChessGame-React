@@ -1,4 +1,4 @@
-import { empty } from "./helper-funcs";
+import { empty } from "../../../utils/chess-utils";
 import { memo } from "react";
 
 export default function Tile({

@@ -1,7 +1,7 @@
 import React from "react";
 import BoardRow from "./BoardRow";
 import { MemoFile } from "./File";
-import "./Chess.css";
+import "../chess.css";
 
 export default function Board({ board, file, func, disable }) {
 	return (

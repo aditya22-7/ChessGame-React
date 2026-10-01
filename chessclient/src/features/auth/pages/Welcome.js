@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import LogicButton from "./Button";
+import LogicButton from "../../../components/Button";
 
 export default function Welcome() {
 	const nav = useNavigate();

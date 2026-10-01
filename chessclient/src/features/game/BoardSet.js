@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import Board from "./Board";
-import { useData } from "./data-provider";
-import DisplayName from "./DisplayName";
-import { compose, reverseData, inc, dsc, asc } from "./helper-funcs";
-import { useLogin } from "./LoginProvider";
-import MiddelFlexBox from "./MiddleFlexBox";
+import Board from "./components/Board";
+import { useData } from "./GameProvider";
+import DisplayName from "../../components/DisplayName";
+import { compose, reverseData, inc, dsc, asc } from "../../utils/chess-utils";
+import { useLogin } from "../auth/LoginProvider";
+import MiddelFlexBox from "../../components/MiddleFlexBox";
 
 export default function BoardSet() {
 	let { board, file, turn, gameOver, side } = useData();

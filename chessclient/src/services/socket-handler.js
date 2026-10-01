@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { empty } from "./helper-funcs";
+import { empty } from "../utils/chess-utils";
 
 export default class socketHandler {
 	static #socket = null;

@@ -1,4 +1,4 @@
-import { useLogin } from "./LoginProvider";
+import { useLogin } from "../LoginProvider";
 import { Navigate } from "react-router-dom";
 
 export default function GameAuth({ children }) {

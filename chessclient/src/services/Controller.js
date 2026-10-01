@@ -1,5 +1,5 @@
-import { asc } from "./helper-funcs";
-import socketHandler from "./socketHandler";
+import { asc } from "../utils/chess-utils";
+import socketHandler from "./socket-handler";
 
 export let gameData = null;
 
