@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BoardSet from "./BoardSet";
-import { MemoButton } from "./Button";
-import { useLogin } from "./LoginProvider";
-import MiddelFlexBox from "./MiddleFlexBox";
+import { MemoButton } from "../../components/Button";
+import { useLogin } from "../auth/LoginProvider";
+import MiddelFlexBox from "../../components/MiddleFlexBox";
 import Status from "./Status";
-import { leaveGame } from "./Controller";
-import LoaderText from "./LoaderText";
+import { leaveGame } from "../../services/Controller";
+import LoaderText from "../../components/LoaderText";
 
 export default function Game() {
 	const nav = useNavigate();

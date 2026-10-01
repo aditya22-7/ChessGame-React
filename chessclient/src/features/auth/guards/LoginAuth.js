@@ -1,9 +1,9 @@
 import * as React from "react";
-import Login from "./Login";
+import Login from "../pages/Login";
 import { Navigate } from "react-router-dom";
-import { checkLoginStatus } from "./Controller";
+import { checkLoginStatus } from "../../../services/Controller";
 import { Suspense } from "react";
-import LoaderText from "./LoaderText";
+import LoaderText from "../../../components/LoaderText";
 
 let promise = null;
 

@@ -1,15 +1,15 @@
-import DataProvider from "./data-provider";
+import DataProvider from "../features/game/GameProvider";
 import { Routes, Route } from "react-router-dom";
-import Game from "./Game";
-import Welcome from "./Welcome";
-import LoginProvider from "./LoginProvider";
-import LoginAuth from "./LoginAuth";
+import Game from "../features/game/Game";
+import Welcome from "../features/auth/pages/Welcome";
+import LoginProvider from "../features/auth/LoginProvider";
+import LoginAuth from "../features/auth/guards/LoginAuth";
 import { BrowserRouter as Router } from "react-router-dom";
-import LoaderText from "./LoaderText";
-import GameAuth from "./GameAuth";
-import FailureAuth from "./FailureAuth";
+import LoaderText from "../components/LoaderText";
+import GameAuth from "../features/auth/guards/GameAuth";
+import FailureAuth from "../features/auth/guards/FailureAuth";
 import { Suspense } from "react";
-import NewGameAuth from "./NewGameAuth";
+import NewGameAuth from "../features/auth/guards/NewGameAuth";
 
 export default function App() {
 	return (

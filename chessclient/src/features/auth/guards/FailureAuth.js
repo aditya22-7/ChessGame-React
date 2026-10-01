@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
-import { checkLoginStatus } from "./Controller";
-import Failed from "./Failed";
+import { checkLoginStatus } from "../../../services/Controller";
+import Failed from "../pages/Failed";
 
 let promise = null;
 

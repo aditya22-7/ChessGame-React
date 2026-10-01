@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { useData } from "./data-provider";
-import { select, getVal, dec, mod, asc, empty } from "./helper-funcs";
+import { useData } from "../GameProvider";
+import { select, getVal, dec, mod, asc, empty } from "../../../utils/chess-utils";
 import { MemoTile } from "./Tile.js";
 
 const useCust = (rowID, func) => {

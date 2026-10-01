@@ -1,7 +1,7 @@
-import { useData } from "./data-provider";
-import { useLogin } from "./LoginProvider";
-import MiddelFlexBox from "./MiddleFlexBox";
-import { MemoDisplayName } from "./DisplayName";
+import { useData } from "./GameProvider";
+import { useLogin } from "../auth/LoginProvider";
+import MiddelFlexBox from "../../components/MiddleFlexBox";
+import { MemoDisplayName } from "../../components/DisplayName";
 
 export default function Status() {
 	const { status } = useData();

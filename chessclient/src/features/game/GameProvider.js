@@ -5,16 +5,16 @@ import React, {
 	useReducer,
 	useEffect,
 } from "react";
-import data from "./data.json";
+import data from "../../data/data.json";
 import {
 	getPermittedTiles,
 	getMove,
 	makeMove,
 	gameData,
 	listenPlayerLeft,
-} from "./Controller";
-import { asc, deepCopy } from "./helper-funcs";
-import { useLogin } from "./LoginProvider";
+} from "../../services/Controller";
+import { asc, deepCopy } from "../../utils/chess-utils";
+import { useLogin } from "../auth/LoginProvider";
 
 // Creating a Context
 const DataContext = createContext();

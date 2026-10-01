@@ -1,4 +1,4 @@
-import Center from "./Center";
+import Center from "../../../components/Center";
 import { Typography } from "@mui/material";
 
 export default function Failed() {
