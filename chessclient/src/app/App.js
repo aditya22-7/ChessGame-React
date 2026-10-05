@@ -10,11 +10,15 @@ import GameAuth from "../features/auth/guards/GameAuth";
 import FailureAuth from "../features/auth/guards/FailureAuth";
 import { Suspense } from "react";
 import NewGameAuth from "../features/auth/guards/NewGameAuth";
+import { CssBaseline } from "@mui/material";
+import PageBackground from "../components/PageBackground";
 
 export default function App() {
 	return (
 		<LoginProvider>
 			<Router>
+				<CssBaseline />
+				<PageBackground>
 				<Routes>
 					<Route path="/" element={<Welcome />} />
 					<Route
@@ -52,6 +56,7 @@ export default function App() {
 						}
 					/>
 				</Routes>
+				</PageBackground>
 			</Router>
 		</LoginProvider>
 	);
