@@ -17,6 +17,7 @@ import NorthEastIcon from "@mui/icons-material/NorthEast";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 const IVORY = "#F4F0E6";
 const GOLD = "#C7A45A";
@@ -30,9 +31,9 @@ const PANEL = "rgba(244, 240, 230, 0.03)";
 const TEAL = "#8FB3A6";
 
 const player = {
-  name: "Aarav Mehta",
-  initials: "AM",
-  matches: 128,
+  name: "",
+  initials: "",
+  matches: 0,
   rating: "1,842",
 };
 
@@ -80,7 +81,8 @@ const games = [
 ];
 
 const navItems = [
-  { label: "Tournament", icon: () => <span style={{ fontSize: 18 }}>♜</span> },
+  { label: "Home", icon: HomeOutlinedIcon },
+  { label: "Tournaments", icon: () => <span style={{ fontSize: 18 }}>♜</span> },
   { label: "Settings", icon: SettingsOutlinedIcon },
   { label: "Profile", icon: () => <span style={{ fontSize: 18 }}>♗</span> },
   { label: "Logout", icon: LogoutOutlinedIcon },
@@ -307,6 +309,8 @@ export default function NewGame({ name }) {
   const [collapsed, setCollapsed] = useState(false);
   const [status, setStatus] = useState("");
   const [loader, setLoader] = useState(false);
+  player.name = name;
+  player.initials = name[0].toUpperCase();
 
   const onNewGame = () => {
     setStatus("Created New Game, Searching for another Player...");
@@ -411,7 +415,7 @@ export default function NewGame({ name }) {
                   color: IVORY,
                 }}
               >
-                Welcome back, Aarav
+                Welcome back, {player.name}
               </Typography>
               <Typography
                 sx={{
@@ -625,7 +629,7 @@ export default function NewGame({ name }) {
               <Button
                 fullWidth
                 endIcon={<ArrowForwardIcon sx={{ fontSize: 15 }} />}
-                click={onNewGame}
+                onClick={onNewGame}
                 sx={{
                   py: 1.3,
                   borderRadius: "8px",
