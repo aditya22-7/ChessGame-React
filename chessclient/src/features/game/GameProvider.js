@@ -101,7 +101,7 @@ export default function DataProvider({ children }) {
 	useEffect(() => {
 		listenPlayerLeft(() => {
 			over();
-			setStatus(`${player2} has left the game, Game Over!`);
+			setStatus(`${player2} has left the game, You Win !!`);
 		});
 	}, []);
 

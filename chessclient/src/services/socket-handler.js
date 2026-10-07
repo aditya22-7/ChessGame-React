@@ -5,6 +5,7 @@ export default class socketHandler {
 	static #socket = null;
 	static #res = null;
 	static resolveData(data) {
+		if (!this.#res) return;
 		this.#res(data);
 		this.#res = null;
 	}

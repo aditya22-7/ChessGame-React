@@ -319,7 +319,7 @@ export default function NewGame({ name }) {
       setPlayer1(player1);
       setPlayer2(player2);
       changeGameFlag();
-      nav(`/game`, { replace: true });
+      nav(`/game`);
     });
   };
 
