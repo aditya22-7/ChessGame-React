@@ -12,7 +12,9 @@ export default function Tile({
 	return (
 		<>
 			<td onClick={click(colNo, listner, disable)} className={style}>
-				{children}
+				<span className={children.trim() ? "piece" : undefined}>
+					{children}
+				</span>
 			</td>
 		</>
 	);
