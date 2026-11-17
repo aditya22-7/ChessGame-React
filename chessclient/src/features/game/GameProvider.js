@@ -133,6 +133,18 @@ export default function DataProvider({ children }) {
 				if (data === "invalid") {
 					setStatus("Your Turn!");
 					changeTurn();
+					changePhase();
+					changeTurn();
+					getPermittedTiles(row, col, (pt) => {
+						setStatus("Your Turn!");
+						changeTurn();
+						if (pt === "invalid") {
+							changePhase();
+							return;
+						}
+
+						changeBoardState(setBoardState, updateBoardTiles, boardState, pt);
+					});
 				} else if (Array.isArray(data)) {
 					setStatus("Waiting for other player");
 					setBoard(data);
