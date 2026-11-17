@@ -3,6 +3,7 @@ const { requireThat, DomainError } = require('./errors');
 const { FormatRegistry } = require('./formats/swiss');
 const { standings, pairingPlayers } = require('./standings');
 const engine = require('../games/engine');
+const { settle: settleRating } = require('../ratings/elo');
 
 const id = () => randomUUID();
 const terminal = t => ['COMPLETED', 'FAILED'].includes(t.status);
@@ -19,8 +20,9 @@ function seededOrder(entrants, seed) {
  * No live sockets or engine instances are retained in persistent state.
  */
 class TournamentService {
-  constructor({ store, clock = () => Date.now(), formats = new FormatRegistry() }) {
+  constructor({ store, clock = () => Date.now(), formats = new FormatRegistry(), settleResult = settleRating }) {
     this.store = store; this.clock = clock; this.formats = formats;
+    this.settleResult = settleResult;
     this.connections = new Map();
   }
   _event(state, tournament, type, payload = {}) {
@@ -134,6 +136,12 @@ class TournamentService {
       blackPoints: outcome === 'DRAW' ? 0.5 : outcome === 'BLACK_WIN' ? 1 : 0 };
     match.result = result; match.status = 'FINALIZED';
     if (match.game) match.game.status = 'FINALIZED';
+    result.rating = this.settleResult(state, {
+      gameId: `tournament:${match.id}`, tournamentId: t.id, matchId: match.id,
+      whitePlayerId: t.entrants.find(e => e.id === match.whiteEntrantId).playerId,
+      blackPlayerId: t.entrants.find(e => e.id === match.blackEntrantId).playerId,
+      outcome, reason, moveCount: match.game?.moves.length ?? 0, completedAt: at,
+    });
     this._event(state, t, 'match:finalized', { matchId: match.id, result });
     return result;
   }
@@ -351,7 +359,9 @@ class TournamentService {
   _gameView(t, match, playerId) {
     const side = this._side(t, match, playerId);
     return { tournamentId: t.id, matchId: match.id, gameSessionId: match.game.id, ruleset: match.game.ruleset,
-      status: match.status, side, startsAt: match.startsAt, deadlineAt: match.deadlineAt,
+      status: match.status, side, startsAt: match.startsAt, deadlineAt: match.deadlineAt, revision: t.version,
+      players: Object.fromEntries(['white', 'black'].map(color => { const e = t.entrants.find(e => e.id === match[color + 'EntrantId']); return [color, { entrantId: e.id, displayName: e.username ?? e.playerId }]; })),
+      moves: match.game.moves.map(({ from, to, acceptedAt }) => ({ from, to, acceptedAt })),
       ...engine.view(engine.restore(match.game.moves)), moveSequence: match.game.moves.length,
       disconnects: match.game.disconnects, drawOffer: match.game.drawOffer, result: match.result, serverNow: this.clock() };
   }
@@ -410,6 +420,7 @@ class TournamentService {
       entrantCount: t.entrants.filter(e => e.status === 'REGISTERED').length,
       reconnectGraceMs: t.reconnectGraceMs, version: t.version, failure: t.failure,
       rulesVersion: t.rulesVersion, tiebreakVersion: t.tiebreakVersion,
+      entrants: t.entrants.map(e => ({ entrantId: e.id, displayName: e.username ?? e.playerId, status: e.status })),
       rounds: t.rounds.map(r => ({ id: r.id, number: r.number, status: r.status, startsAt: r.startsAt,
         endsAt: r.endsAt, failure: r.failure, awards: r.startedAt !== null ? r.awards : [],
         matches: r.matches.map(m => ({ id: m.id, boardNumber: m.boardNumber,

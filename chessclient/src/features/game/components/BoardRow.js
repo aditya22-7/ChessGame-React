@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useData } from "../GameProvider";
-import { select, getVal, dec, mod, asc, empty } from "../../../utils/chess-utils";
+import { select, getVal, dec, mod, asc } from "../../../utils/chess-utils";
 import { MemoTile } from "./Tile.js";
 
 const useCust = (rowID, func) => {
@@ -21,18 +21,11 @@ const useCust = (rowID, func) => {
 					i,
 					styles
 			  );
-	}, []);
+	}, [rowID, boardState, rowNo]);
 
 	const click = useCallback(
 		(colNo, call, disable) => () => call(...dec(rowNo, colNo), disable),
-		[]
-	);
-
-	const emptyMemo = useCallback(empty, []);
-
-	const clickHelper = useCallback(
-		(disable) => (disable ? emptyMemo : click),
-		[click, emptyMemo]
+		[rowNo]
 	);
 
 	return { click, stateHelper, numStyle, rowNo, onSelect, rowSize };

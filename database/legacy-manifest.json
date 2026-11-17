@@ -1,0 +1,31 @@
+{
+  "sourceVersion": "8.0.36",
+  "tables": [
+    "player",
+    "player_accesslog",
+    "player_affiliation",
+    "player_contact",
+    "player_gametheme",
+    "player_history",
+    "player_subscription",
+    "player_uitheme",
+    "ruleset",
+    "tourtype",
+    "tournament",
+    "teams",
+    "team_criteria",
+    "team_history",
+    "teamstate",
+    "tourteams",
+    "tourteamstate",
+    "tournament_rules",
+    "this_tournament_rules",
+    "tour_criteria",
+    "tourteam_matches",
+    "tourteam_player_matches",
+    "tourteam_match_details",
+    "tourteam_player_match_details",
+    "tournament_details",
+    "tournament_match_moves"
+  ]
+}

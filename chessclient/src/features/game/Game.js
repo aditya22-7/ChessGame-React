@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BoardSet from "./BoardSet";
 import { useLogin } from "../auth/LoginProvider";
 import Status from "./Status";
-import { leaveGame } from "../../services/Controller";
+import { leaveGame, fetchPlayerRating } from "../../services/Controller";
+import { useData } from "./GameProvider";
 import LoaderText from "../../components/LoaderText";
 
 /* ---------- design tokens ---------- */
@@ -218,8 +219,17 @@ export default function Game() {
 	const [loader, setLoader] = useState(false);
 	const { player1, player2, setPlayer2, changeGameFlag } = useLogin();
 	const leavingRef = useRef(false);
+	const { gameOver } = useData();
+	const [ratings, setRatings] = useState({});
+	useEffect(() => {
+		const controller = new AbortController();
+		Promise.all([fetchPlayerRating(player1, controller.signal), fetchPlayerRating(player2, controller.signal)])
+			.then(([own, opponent]) => setRatings({ own: own.rating, opponent: opponent.rating }))
+			.catch(() => { if (!controller.signal.aborted) setRatings({}); });
+		return () => controller.abort();
+	}, [player1, player2, gameOver]);
 
-	const leaveCurrentGame = (navigateToLobby) => {
+	const leaveCurrentGame = useCallback((navigateToLobby) => {
 		if (leavingRef.current) return;
 		leavingRef.current = true;
 		setStatus("Leaving Game..");
@@ -229,13 +239,13 @@ export default function Game() {
 			setPlayer2("");
 			if (navigateToLobby) nav(`/newgame`, { replace: true });
 		});
-	};
+	}, [changeGameFlag, setPlayer2, nav]);
 
 	useEffect(() => {
 		const handleBrowserBack = () => leaveCurrentGame(false);
 		window.addEventListener("popstate", handleBrowserBack);
 		return () => window.removeEventListener("popstate", handleBrowserBack);
-	}, []);
+	}, [leaveCurrentGame]);
 
 	if (loader) return <LoaderText text={status} />;
 
@@ -295,7 +305,7 @@ export default function Game() {
 						gap: 10,
 						width: "fit-content",
 					}}>
-					<PlayerCard name={player2} rating={1428} time="08:42" active={false} />
+					<PlayerCard name={player2} rating={ratings.opponent ?? "—"} time="08:42" active={false} />
 
 					{/* BoardSet renders a "p1 VS p2" title first - hidden here because
 					    the player cards already show both names. */}
@@ -303,7 +313,7 @@ export default function Game() {
 						<BoardSet />
 					</div>
 
-					<PlayerCard name={player1} rating={1512} time="09:16" active />
+					<PlayerCard name={player1} rating={ratings.own ?? "—"} time="09:16" active />
 				</div>
 
 				{/* Right: moves panel + leave */}

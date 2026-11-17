@@ -16,7 +16,7 @@ export default function LoginAuth() {
 	const ret = get();
 	promise = null;
 	if (ret.status === "loggedIn")
-		return <Navigate to="/newgame" replace={true} />;
+		return <Navigate to="/home" replace={true} />;
 	if (ret.status === "failed") return <Navigate to="/failed" replace={true} />;
 	if (ret.status === "login")
 		return (

@@ -129,3 +129,58 @@ test('dead waiting quick-play entries are skipped after disconnect', { timeout: 
   const [[av], [cv]] = await Promise.all([ad, cd]);
   assert.equal(av.name, 'new-b'); assert.equal(cv.name, 'new-a');
 });
+test('rating APIs require login, expose persisted history and reject client rating writes', { timeout: 10000 }, async t => {
+  const b = await backend(t);
+  assert.equal((await fetch(b.base + '/players/me/rating')).status, 401);
+  const cookie = await b.login('jon'), headers = { Cookie: cookie };
+  const profile = await fetch(b.base + '/players/me/rating', { headers });
+  assert.equal((await profile.json()).rating, 1200);
+  assert.equal((await fetch(b.base + '/players/missing/rating', { headers })).status, 404);
+  assert.equal((await fetch(b.base + '/players/me/rating-history?limit=200', { headers })).status, 400);
+  assert.equal((await fetch(b.base + '/players/me/rating', { method: 'POST', headers })).status, 404);
+  assert.equal((await (await fetch(b.base + '/players/me/rating-history', { headers })).json()).total, 0);
+});
+test('authenticated quick-play king capture rates real identities once despite supplied aliases', { timeout: 10000 }, async t => {
+  const b = await backend(t), jonCookie = await b.login('jon'), tomCookie = await b.login('tom');
+  const a = await b.socket(jonCookie), c = await b.socket(tomCookie);
+  const ad = once(a, 'getdata'), cd = once(c, 'getdata');
+  a.emit('newgame', 'forged-one'); c.emit('newgame', 'forged-two');
+  const [[av], [cv]] = await Promise.all([ad, cd]);
+  assert.equal(av.name, 'tom'); assert.equal(cv.name, 'jon');
+  assert.equal(av.rated, true);
+  const white = av.side === 'white' ? a : c, black = white === a ? c : a;
+  const sequence = [
+    [[1, 4], [3, 4]], [[6, 0], [5, 0]], [[0, 4], [2, 4]],
+    [[6, 7], [5, 7]], [[2, 4], [5, 1]], [[5, 0], [4, 0]],
+    [[5, 1], [6, 2]], [[5, 7], [4, 7]], [[6, 2], [7, 3]],
+  ];
+  for (let i = 0; i < sequence.length; i++) {
+    const [from, to] = sequence[i], actor = i % 2 ? black : white, other = actor === white ? black : white;
+    const selected = once(actor, 'from'); actor.emit('pt', { row: from[0], col: from[1] });
+    assert.ok(Array.isArray((await selected)[0]));
+    const applied = once(actor, 'to'), changed = once(other, 'move');
+    actor.emit('to', { row: to[0], col: to[1] });
+    const [[response]] = await Promise.all([applied, changed]);
+    if (i === sequence.length - 1) assert.equal(response.status, 'White');
+  }
+  const whiteId = white === a ? 'jon' : 'tom', blackId = white === a ? 'tom' : 'jon';
+  assert.equal(b.ratings.get(whiteId).rating, 1216);
+  assert.equal(b.ratings.get(blackId).rating, 1184);
+  const duplicate = once(white, 'to'); white.emit('to', { row: 7, col: 3 });
+  assert.equal((await duplicate)[0], 'invalid');
+  assert.equal(b.ratings.get(whiteId).ratedGames, 1);
+  const profile = await fetch(b.base + '/players/' + whiteId + '/rating', { headers: { Cookie: jonCookie } });
+  assert.equal((await profile.json()).rating, 1216);
+});
+test('case variants of a login use one canonical rating identity', { timeout: 10000 }, async t => {
+  const b = await backend(t);
+  const user = JSON.parse(fs.readFileSync(path.join(__dirname, '../users/jon.json'), 'utf8'));
+  const response = await fetch(b.base + '/auth', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: 'JON', password: user.password, count: 1 }) });
+  const cookie = response.headers.get('set-cookie').split(';')[0];
+  assert.equal((await response.json()).status, 'success');
+  const auth = await fetch(b.base + '/auth', { method: 'POST', headers: { Cookie: cookie } });
+  assert.equal((await auth.json()).name, 'jon');
+  const profile = await fetch(b.base + '/players/JON/rating', { headers: { Cookie: cookie } });
+  assert.equal((await profile.json()).playerId, 'jon');
+});

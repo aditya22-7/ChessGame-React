@@ -5,7 +5,7 @@ import "../chess.css";
 
 export default function Board({ board, file, func, disable }) {
 	return (
-		<table>
+		<table className="legacy-chess-board">
 			<thead>
 				<MemoFile data={file} />
 			</thead>

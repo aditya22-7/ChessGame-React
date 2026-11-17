@@ -1,5 +1,6 @@
 import { io } from "socket.io-client";
 import { empty } from "../utils/chess-utils";
+import { API_URL } from '../infrastructure/api';
 
 export default class socketHandler {
 	static #socket = null;
@@ -12,7 +13,7 @@ export default class socketHandler {
 
 	static init() {
 		if (this.#socket) return;
-		this.#socket = io("http://localhost:8081");
+		this.#socket = io(API_URL, { withCredentials: true });
 		this.#socket.on("getdata", (data) => {
 			this.resolveData(data);
 		});

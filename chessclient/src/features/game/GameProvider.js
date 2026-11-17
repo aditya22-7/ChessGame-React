@@ -84,7 +84,7 @@ export default function DataProvider({ children }) {
 	const [rowSize] = useState(8);
 	const [colSize] = useState(8);
 	const [turn, changeTurn] = useReducer((val) => !val, getData("turn"));
-	const [side, _] = useState(getData("side"));
+	const [side] = useState(getData("side"));
 	const [status, setStatus] = useState(getData("status"));
 	const [gameOver, over] = useReducer((val) => !val, false);
 
@@ -96,14 +96,14 @@ export default function DataProvider({ children }) {
 				changeTurn();
 			});
 		}
-	}, []);
+	}, [side]);
 
 	useEffect(() => {
 		listenPlayerLeft(() => {
 			over();
 			setStatus(`${player2} has left the game, You Win !!`);
 		});
-	}, []);
+	}, [player2]);
 
 	const onSelect = (row, col, disable) => {
 		if (disable) return;
@@ -126,6 +126,7 @@ export default function DataProvider({ children }) {
 						case "White":
 							helper("white");
 							break;
+						default: break;
 					}
 					over();
 				};

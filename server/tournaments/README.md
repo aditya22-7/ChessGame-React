@@ -191,8 +191,10 @@ stalemate. Tournament game completion follows its king-capture outcome, plus
 resignation, agreed draws, forfeits and deadline decisions. Replacing the engine
 requires a versioned journal migration or retaining the old engine for recovery.
 Quick-play game recovery is not added in this phase; recovery covers tournament
-games. No frontend tournament page, Elo, team implementation, organizer flow,
-result correction API or database-specific adapter is included.
+games. No frontend tournament page, team implementation, organizer flow,
+result correction API or database-specific adapter is included. Elo has since
+been added through the shared [rating service](../ratings/README.md); tournament
+points and random seeding remain independent of ratings.
 
 ## Verification
 

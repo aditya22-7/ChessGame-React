@@ -1,4 +1,6 @@
 let { createNewGame } = require("./game");
+const { randomUUID } = require('node:crypto');
+const engine = require('./server/games/engine');
 
 class Manager {
 	#turn = true;
@@ -9,6 +11,8 @@ class Manager {
 	#game;
 	#gameManager = null;
 	#pt = null;
+	#moves = [];
+	#id = randomUUID();
 	removed = false;
 
 	constructor(gameManager) {
@@ -57,6 +61,7 @@ class Manager {
 			freeze,
 			name,
 			side,
+			rated: Boolean(this.#whitePlayer.ratingPlayerId && this.#blackPlayer.ratingPlayerId && this.#whitePlayer.ratingPlayerId !== this.#blackPlayer.ratingPlayerId),
 		};
 	}
 
@@ -151,8 +156,26 @@ class Manager {
 			if (!data || !this.#pt || !this.#from || this.toFreeze(socket.side) || this.#game.isOver()) return socket.emit("to", "invalid");
 			for (let v of this.#pt) {
 				if (v.row === data.row && v.col === data.col) {
-					this.#to = this.#game.board.getTile(data.row, data.col);
-					const ret = this.#game.move(this.#from, this.#to);
+					const move = { from: { row: this.#from.row, col: this.#from.col }, to: { row: data.row, col: data.col } };
+					let candidate;
+					try {
+						candidate = engine.restore(this.#moves);
+						engine.apply(candidate, move);
+						if (candidate.status && this.#gameManager.ratings) this.#gameManager.ratings.settle({
+							gameId: `quickplay:${this.#id}`,
+							whitePlayerId: this.#whitePlayer.ratingPlayerId ?? null,
+							blackPlayerId: this.#blackPlayer.ratingPlayerId ?? null,
+							outcome: candidate.status === 'White' ? 'WHITE_WIN' : 'BLACK_WIN',
+							reason: 'GAME_COMPLETED', moveCount: this.#moves.length + 1,
+							completedAt: this.#gameManager.clock(),
+						});
+					} catch (error) {
+						console.error('Quick-play move could not be committed:', error);
+						return socket.emit('to', 'invalid');
+					}
+					this.#game = candidate;
+					this.#moves.push(move);
+					const ret = candidate.status ? { board: candidate.getBoard(), status: candidate.status } : candidate.getBoard();
 					this.#to = null;
 					this.#from = null;
 					this.#pt = null;

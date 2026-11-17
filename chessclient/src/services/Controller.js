@@ -1,11 +1,24 @@
 import { asc } from "../utils/chess-utils";
 import socketHandler from "./socket-handler";
+import { API_URL } from '../infrastructure/api';
 
 export let gameData = null;
 
+async function ratingRequest(path, signal) {
+	const response = await fetch(`${API_URL}/players/${path}`, {
+		credentials: "include", signal,
+	});
+	if (!response.ok) throw new Error("Unable to load rating data");
+	return response.json();
+}
+export const fetchPlayerRating = (playerId = "me", signal) =>
+	ratingRequest(`${encodeURIComponent(playerId)}/rating`, signal);
+export const fetchRatingHistory = (limit = 5, signal) =>
+	ratingRequest(`me/rating-history?limit=${limit}`, signal);
+
 export const checkLogin = (username, password, count) => {
 	let response, error, promise;
-	promise = fetch("http://localhost:8081/auth", {
+	promise = fetch(`${API_URL}/auth`, {
 		method: "POST",
 		credentials: "include",
 		headers: {
@@ -32,7 +45,7 @@ export const checkLogin = (username, password, count) => {
 
 export const checkLoginStatus = () => {
 	let response, error, promise;
-	promise = fetch("http://localhost:8081/auth", {
+	promise = fetch(`${API_URL}/auth`, {
 		method: "POST",
 		credentials: "include",
 		headers: {
@@ -53,7 +66,7 @@ export const checkLoginStatus = () => {
 };
 
 export const logout = async (callback) => {
-	await fetch("http://localhost:8081/logout", {
+	await fetch(`${API_URL}/logout`, {
 		method: "POST",
 		credentials: "include",
 		headers: {
@@ -61,6 +74,7 @@ export const logout = async (callback) => {
 		},
 		referrerPolicy: "origin",
 	}).then((res) => res.json());
+	window.dispatchEvent(new Event('chess:unauthenticated'));
 	callback();
 };
 

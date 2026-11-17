@@ -1,0 +1,2464 @@
+{
+  "columns": {
+    "player": [
+      {
+        "name": "player_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "first_name",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "last_name",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "username",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "_password",
+        "type": "varchar(15)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_accesslog": [
+      {
+        "name": "player_accesslog_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "login_time",
+        "type": "datetime",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_affiliation": [
+      {
+        "name": "player_affiliation_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "country",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "_organization",
+        "type": "varchar(25)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_contact": [
+      {
+        "name": "player_contact_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "mobile_number",
+        "type": "varchar(20)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "email",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_gametheme": [
+      {
+        "name": "player_gametheme_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "game_theme_mode",
+        "type": "varchar(15)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_history": [
+      {
+        "name": "player_history_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "matches_played",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tournaments_played",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_subscription": [
+      {
+        "name": "player_subscription_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "game_subscription",
+        "type": "varchar(20)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "player_uitheme": [
+      {
+        "name": "player_uitheme_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "theme_mode",
+        "type": "varchar(30)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "ruleset": [
+      {
+        "name": "ruleset_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "formation_date",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "description",
+        "type": "varchar(200)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "team_criteria": [
+      {
+        "name": "team_criteria_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "teamID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "minimum_ranking",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "maximum_ranking",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "minimum_players_number",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "maximum_players_number",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "team_history": [
+      {
+        "name": "team_history_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "teamID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "number_of_tournaments",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "teams": [
+      {
+        "name": "team_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "unique_name",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "team_name",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "number_of_players",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "teamstate": [
+      {
+        "name": "teamState_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "teamsID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "this_tournament_rules": [
+      {
+        "name": "this_tournament_rules_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tournamentID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tournament_rulesID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tour_criteria": [
+      {
+        "name": "tour_criteria_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "MinimumRanking",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "MaximumRanking",
+        "type": "int",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tournament": [
+      {
+        "name": "tournament_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourtypeID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tour_name",
+        "type": "varchar(50)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tour_version",
+        "type": "decimal(5,2)",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "number_of_teams",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "number_of_players",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tour_start_day",
+        "type": "datetime",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tour_end_day",
+        "type": "datetime",
+        "nullable": "YES",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tournament_details": [
+      {
+        "name": "tournament_details_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "winner_team",
+        "type": "varchar(45)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tournament_match_moves": [
+      {
+        "name": "tournament_match_moves_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "ttPlayerMatchesID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourTeamStateID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "piece_color",
+        "type": "varchar(10)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "piece_name",
+        "type": "varchar(10)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tile",
+        "type": "varchar(7)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tournament_rules": [
+      {
+        "name": "tournament_rules_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "rulesetID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "rule_consideration_date",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteam_match_details": [
+      {
+        "name": "tourteam_match_details_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteam_matchID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "draw",
+        "type": "varchar(10)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "winner_team",
+        "type": "varchar(36)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "losing_team",
+        "type": "varchar(36)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteam_matches": [
+      {
+        "name": "TourTeamMatches_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteam1",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteam2",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "start_time",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "end_time",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteam_player_match_details": [
+      {
+        "name": "tourteam_player_match_details_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteam_player_matchID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "UNI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "white_pieces_player",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "black_pieces_player",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "draw",
+        "type": "varchar(10)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "winning_player",
+        "type": "varchar(36)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "losing_player",
+        "type": "varchar(36)",
+        "nullable": "YES",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playing_start_time",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playing_end_time",
+        "type": "datetime",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteam_player_matches": [
+      {
+        "name": "tourteam_player_matches_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteam_matchID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "player1",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "player2",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "start_time",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "time_period",
+        "type": "int",
+        "nullable": "NO",
+        "collation": null,
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteams": [
+      {
+        "name": "TourTeams_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "teamID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourteamstate": [
+      {
+        "name": "TourTeamState_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "tourteamID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "playerID",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      }
+    ],
+    "tourtype": [
+      {
+        "name": "tourType_id",
+        "type": "varchar(36)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "PRI",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "_name",
+        "type": "varchar(25)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "MUL",
+        "default": null,
+        "extra": ""
+      },
+      {
+        "name": "_description",
+        "type": "varchar(75)",
+        "nullable": "NO",
+        "collation": "utf8mb4_0900_ai_ci",
+        "key": "",
+        "default": null,
+        "extra": ""
+      }
+    ]
+  },
+  "foreignKeys": [
+    {
+      "TABLE_NAME": "player_accesslog",
+      "CONSTRAINT_NAME": "fk_player_accesslog",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_affiliation",
+      "CONSTRAINT_NAME": "fk_player_affiliation",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "CONSTRAINT_NAME": "fk_player_contact",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_gametheme",
+      "CONSTRAINT_NAME": "fk_player_gametheme",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_history",
+      "CONSTRAINT_NAME": "fk_player_history",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_subscription",
+      "CONSTRAINT_NAME": "fk_player_subscription",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "player_uitheme",
+      "CONSTRAINT_NAME": "fk_player_uitheme",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "team_criteria",
+      "CONSTRAINT_NAME": "fk_team_criteria",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "teamID",
+      "REFERENCED_TABLE_NAME": "teams",
+      "REFERENCED_COLUMN_NAME": "team_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "team_history",
+      "CONSTRAINT_NAME": "fk_team_history",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "teamID",
+      "REFERENCED_TABLE_NAME": "teams",
+      "REFERENCED_COLUMN_NAME": "team_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "CONSTRAINT_NAME": "fk_teamState_player",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "CONSTRAINT_NAME": "fk_teamState_teams",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "teamsID",
+      "REFERENCED_TABLE_NAME": "teams",
+      "REFERENCED_COLUMN_NAME": "team_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "CONSTRAINT_NAME": "fk_this_tourRules_tour",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tournamentID",
+      "REFERENCED_TABLE_NAME": "tournament",
+      "REFERENCED_COLUMN_NAME": "tournament_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "CONSTRAINT_NAME": "fk_this_tourRules_tourRules",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tournament_rulesID",
+      "REFERENCED_TABLE_NAME": "tournament_rules",
+      "REFERENCED_COLUMN_NAME": "tournament_rules_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tour_criteria",
+      "CONSTRAINT_NAME": "fk_tour_criteria",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourID",
+      "REFERENCED_TABLE_NAME": "tournament",
+      "REFERENCED_COLUMN_NAME": "tournament_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament",
+      "CONSTRAINT_NAME": "fk_tournament_tourtype",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourtypeID",
+      "REFERENCED_TABLE_NAME": "tourtype",
+      "REFERENCED_COLUMN_NAME": "tourType_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "CONSTRAINT_NAME": "fk_tourdetails_tournament",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourID",
+      "REFERENCED_TABLE_NAME": "tournament",
+      "REFERENCED_COLUMN_NAME": "tournament_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "CONSTRAINT_NAME": "fk_tourdetails_tourteams",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "winner_team",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament_match_moves",
+      "CONSTRAINT_NAME": "fk_tmm_tourteamstate",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourTeamStateID",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament_match_moves",
+      "CONSTRAINT_NAME": "fk_tmm_ttplayer_matches",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "ttPlayerMatchesID",
+      "REFERENCED_TABLE_NAME": "tourteam_player_matches",
+      "REFERENCED_COLUMN_NAME": "tourteam_player_matches_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tournament_rules",
+      "CONSTRAINT_NAME": "fk_tourrules_ruleset",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "rulesetID",
+      "REFERENCED_TABLE_NAME": "ruleset",
+      "REFERENCED_COLUMN_NAME": "ruleset_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "CONSTRAINT_NAME": "fk_ttmd_tourteam_loss",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "losing_team",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "CONSTRAINT_NAME": "fk_ttmd_tourteam_win",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "winner_team",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "CONSTRAINT_NAME": "fk_ttmd_ttm",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteam_matchID",
+      "REFERENCED_TABLE_NAME": "tourteam_matches",
+      "REFERENCED_COLUMN_NAME": "TourTeamMatches_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "CONSTRAINT_NAME": "fk_ttm_tournament",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourID",
+      "REFERENCED_TABLE_NAME": "tournament",
+      "REFERENCED_COLUMN_NAME": "tournament_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "CONSTRAINT_NAME": "fk_ttm_tourteams1",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteam1",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "CONSTRAINT_NAME": "fk_ttm_tourteams2",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteam2",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "CONSTRAINT_NAME": "fk_ttpmd_tourteamstate1",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "winning_player",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "CONSTRAINT_NAME": "fk_ttpmd_tourteamstate2",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "losing_player",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "CONSTRAINT_NAME": "fk_ttpmd_tourteamstate_black",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "black_pieces_player",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "CONSTRAINT_NAME": "fk_ttpmd_tourteamstate_white",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "white_pieces_player",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "CONSTRAINT_NAME": "fk_ttpmd_ttplayer_match",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteam_player_matchID",
+      "REFERENCED_TABLE_NAME": "tourteam_player_matches",
+      "REFERENCED_COLUMN_NAME": "tourteam_player_matches_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "CONSTRAINT_NAME": "fk_ttpm_ttm",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteam_matchID",
+      "REFERENCED_TABLE_NAME": "tourteam_matches",
+      "REFERENCED_COLUMN_NAME": "TourTeamMatches_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "CONSTRAINT_NAME": "fk_ttpm_ttstate1",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "player1",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "CONSTRAINT_NAME": "fk_ttpm_ttstate2",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "player2",
+      "REFERENCED_TABLE_NAME": "tourteamstate",
+      "REFERENCED_COLUMN_NAME": "TourTeamState_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "CONSTRAINT_NAME": "fk_tournament_tourteams",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourID",
+      "REFERENCED_TABLE_NAME": "tournament",
+      "REFERENCED_COLUMN_NAME": "tournament_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "CONSTRAINT_NAME": "fk_tourteams_teams",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "teamID",
+      "REFERENCED_TABLE_NAME": "teams",
+      "REFERENCED_COLUMN_NAME": "team_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "CONSTRAINT_NAME": "fk_tourteamstate_player",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "playerID",
+      "REFERENCED_TABLE_NAME": "player",
+      "REFERENCED_COLUMN_NAME": "player_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "CONSTRAINT_NAME": "fk_tourteamstate_teams",
+      "ORDINAL_POSITION": 1,
+      "COLUMN_NAME": "tourteamID",
+      "REFERENCED_TABLE_NAME": "tourteams",
+      "REFERENCED_COLUMN_NAME": "TourTeams_id",
+      "UPDATE_RULE": "NO ACTION",
+      "DELETE_RULE": "NO ACTION"
+    }
+  ],
+  "indexes": [
+    {
+      "TABLE_NAME": "player",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player",
+      "INDEX_NAME": "username",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "username",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_accesslog",
+      "INDEX_NAME": "fk_player_accesslog_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_accesslog",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_accesslog_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_affiliation",
+      "INDEX_NAME": "fk_player_affiliation_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_affiliation",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_affiliation",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_affiliation_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "INDEX_NAME": "email",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "email",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "INDEX_NAME": "fk_player_contact_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "INDEX_NAME": "mobile_number",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "mobile_number",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_contact",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_contact_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_gametheme",
+      "INDEX_NAME": "fk_player_gametheme_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_gametheme",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_gametheme",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_gametheme_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_history",
+      "INDEX_NAME": "fk_player_history_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_history",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_history",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_history_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_subscription",
+      "INDEX_NAME": "fk_player_subscription_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_subscription",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_subscription",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_subscription_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_uitheme",
+      "INDEX_NAME": "fk_player_uitheme_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_uitheme",
+      "INDEX_NAME": "playerID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "player_uitheme",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player_uitheme_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "ruleset",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "ruleset_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "ruleset",
+      "INDEX_NAME": "unique_columns_ruleset",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "formation_date",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "ruleset",
+      "INDEX_NAME": "unique_columns_ruleset",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "description",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_criteria",
+      "INDEX_NAME": "fk_team_criteria_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_criteria",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "team_criteria_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_criteria",
+      "INDEX_NAME": "teamID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_history",
+      "INDEX_NAME": "fk_team_history_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_history",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "team_history_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "team_history",
+      "INDEX_NAME": "teamID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teams",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "team_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teams",
+      "INDEX_NAME": "unique_name",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "unique_name",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "INDEX_NAME": "fk_teamState_player_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "INDEX_NAME": "fk_teamState_teams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamsID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamState_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "INDEX_NAME": "unique_columns_teamstate",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamsID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "teamstate",
+      "INDEX_NAME": "unique_columns_teamstate",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "INDEX_NAME": "fk_this_tourRules_tour_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournamentID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "INDEX_NAME": "fk_this_tourRules_tourRules_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournament_rulesID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "this_tournament_rules_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "INDEX_NAME": "unique_columns_this_tournament_rules",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournamentID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "this_tournament_rules",
+      "INDEX_NAME": "unique_columns_this_tournament_rules",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "tournament_rulesID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tour_criteria",
+      "INDEX_NAME": "fk_tour_criteria_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tour_criteria",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tour_criteria_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tour_criteria",
+      "INDEX_NAME": "tourID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament",
+      "INDEX_NAME": "fk_tournament_tourtype_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourtypeID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournament_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament",
+      "INDEX_NAME": "tour_name",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tour_name",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament",
+      "INDEX_NAME": "tour_name",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "tour_version",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "INDEX_NAME": "fk_tourdetails_tournament_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "INDEX_NAME": "fk_tourdetails_tourteams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "winner_team",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournament_details_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_details",
+      "INDEX_NAME": "tourID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_match_moves",
+      "INDEX_NAME": "fk_tmm_tourteamstate_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourTeamStateID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_match_moves",
+      "INDEX_NAME": "fk_tmm_ttplayer_matches_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "ttPlayerMatchesID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_match_moves",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournament_match_moves_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_rules",
+      "INDEX_NAME": "fk_tourrules_ruleset_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "rulesetID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_rules",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tournament_rules_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tournament_rules",
+      "INDEX_NAME": "rulesetID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "rulesetID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "INDEX_NAME": "fk_ttmd_tourteam1_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "winner_team",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "INDEX_NAME": "fk_ttmd_tourteam2_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "losing_team",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_match_details_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_match_details",
+      "INDEX_NAME": "tourteam_matchesID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_matchID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "INDEX_NAME": "fk_ttm_tournament_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "INDEX_NAME": "fk_ttm_tourteams2_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam2",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "INDEX_NAME": "fk_ttm_tourteams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam1",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_matches",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "TourTeamMatches_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "fk_ttplayer_rmatch_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_player_matchID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "fk_ttpmd_tourteamstate1_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "winning_player",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "fk_ttpmd_tourteamstate2_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "losing_player",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "fk_ttpmd_tourteamstate_black_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "black_pieces_player",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "fk_ttpmd_tourteamstate_white_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "white_pieces_player",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_player_match_details_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_match_details",
+      "INDEX_NAME": "tourteam_player_matchID_UNIQUE",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_player_matchID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "INDEX_NAME": "fk_ttpm_ttm_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_matchID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "INDEX_NAME": "fk_ttpm_ttstate2_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player2",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "INDEX_NAME": "fk_ttpm_ttstate_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "player1",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteam_player_matches",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteam_player_matches_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "INDEX_NAME": "fk_tournament_tourteams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "INDEX_NAME": "fk_tourteams_teams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "TourTeams_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "INDEX_NAME": "unique_columns_tourteams",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteams",
+      "INDEX_NAME": "unique_columns_tourteams",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "teamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "INDEX_NAME": "fk_tourteamstate_player_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "INDEX_NAME": "fk_tourteamstate_teams_idx",
+      "NON_UNIQUE": 1,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "TourTeamState_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "INDEX_NAME": "unique_columns_tourteamsstate",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourteamID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourteamstate",
+      "INDEX_NAME": "unique_columns_tourteamsstate",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "playerID",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourtype",
+      "INDEX_NAME": "PRIMARY",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "tourType_id",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourtype",
+      "INDEX_NAME": "unique_columns_tourtype",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 1,
+      "COLUMN_NAME": "_name",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    },
+    {
+      "TABLE_NAME": "tourtype",
+      "INDEX_NAME": "unique_columns_tourtype",
+      "NON_UNIQUE": 0,
+      "SEQ_IN_INDEX": 2,
+      "COLUMN_NAME": "_description",
+      "SUB_PART": null,
+      "COLLATION": "A",
+      "INDEX_TYPE": "BTREE",
+      "IS_VISIBLE": "YES"
+    }
+  ]
+}

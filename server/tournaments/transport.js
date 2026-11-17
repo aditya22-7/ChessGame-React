@@ -10,17 +10,18 @@ function requireLogin(req, res, next) {
 function router(service) {
   const routes = express.Router();
   routes.use(requireLogin);
-  const handle = fn => (req, res, next) => {
-    try { res.json(fn(req)); } catch (error) { next(error); }
+  const handle = fn => async (req, res, next) => {
+    try { res.json(await fn(req)); } catch (error) { next(error); }
   };
   routes.get('/', handle(() => service.list()));
   routes.get('/:id', handle(req => service.get(req.params.id)));
   routes.get('/:id/standings', handle(req => service.standings(req.params.id)));
-  routes.get('/:id/rounds', handle(req => service.get(req.params.id).rounds));
-  routes.get('/:id/my-status', handle(req => service.mine(req.params.id, req.session.name)));
-  routes.post('/:id/registrations', handle(req => service.register(req.params.id, req.session.name)));
-  routes.delete('/:id/registrations/me', handle(req => service.withdraw(req.params.id, req.session.name)));
-  routes.get('/:id/matches/:matchId', handle(req => service.game(req.params.id, req.params.matchId, req.session.name)));
+  routes.get('/:id/rounds', handle(async req => (await service.get(req.params.id)).rounds));
+  const player=req=>req.session.playerId??req.session.name;
+  routes.get('/:id/my-status', handle(req => service.mine(req.params.id, player(req))));
+  routes.post('/:id/registrations', handle(req => service.register(req.params.id, player(req))));
+  routes.delete('/:id/registrations/me', handle(req => service.withdraw(req.params.id, player(req))));
+  routes.get('/:id/matches/:matchId', handle(req => service.game(req.params.id, req.params.matchId, player(req))));
   // Attendance is socket-bound. An HTTP request cannot prove a live game connection.
   return routes;
 }
@@ -34,7 +35,7 @@ function socketTransport(io, service, sessionMiddleware) {
     if (!socket.request.session) return reject(new DomainError('UNAUTHENTICATED', 'Login required', 401));
     socket.request.session.reload(error => {
       if (error || !socket.request.session?.isAuth) reject(new DomainError('UNAUTHENTICATED', 'Login required', 401));
-      else resolve(socket.request.session.name);
+      else resolve(socket.request.session.playerId??socket.request.session.name);
     });
   });
   io.engine.use(sessionMiddleware);
@@ -52,13 +53,21 @@ function socketTransport(io, service, sessionMiddleware) {
       }
     });
     bind('tournament:subscribe', async ({ tournamentId }) => {
-      const value = service.get(tournamentId);
+      const value = await service.get(tournamentId);
       await socket.join(`tournament:${tournamentId}`);
       return value;
     });
+    bind('tournament:unsubscribe', async ({ tournamentId }) => {
+      await socket.leave(`tournament:${tournamentId}`);
+      return { unsubscribed: true };
+    });
     bind('game:join', async ({ tournamentId, matchId }, playerId) => {
-      if (socket.side) throw new DomainError('ALREADY_PLAYING', 'Leave quick play before joining a tournament match');
-      const value = service.join(tournamentId, matchId, playerId, socket.id);
+      if (socket.side || socket.data.quickPlayJoining) throw new DomainError('ALREADY_PLAYING', 'Leave quick play before joining a tournament match');
+      socket.data.quickPlayJoining = true;
+      let value;
+      try { value = await service.join(tournamentId, matchId, playerId, socket.id); }
+      finally { socket.data.quickPlayJoining = false; }
+      if (!socket.connected) { await service.disconnect(socket.id); throw new DomainError('CONNECTION_CLOSED','Socket disconnected'); }
       socket.data.tournamentPlayerId = playerId;
       await socket.join(`tournament:${tournamentId}`);
       await socket.join(`match:${matchId}`);
@@ -67,13 +76,13 @@ function socketTransport(io, service, sessionMiddleware) {
     bind('game:sync', ({ tournamentId, matchId }, playerId) => service.game(tournamentId, matchId, playerId));
     bind('game:command', ({ tournamentId, matchId, command }, playerId) => service.command(tournamentId, matchId, playerId, command));
     bind('game:leave', async () => {
-      service.disconnect(socket.id);
+      await service.disconnect(socket.id);
       delete socket.data.tournamentPlayerId;
       for (const room of socket.rooms) if (room.startsWith('match:')) await socket.leave(room);
       return { left: true };
     });
-    socket.on('disconnect', () => {
-      try { service.disconnect(socket.id); } catch (error) { console.error('Failed to persist disconnect:', error); }
+    socket.on('disconnect', async () => {
+      try { await service.disconnect(socket.id); } catch (error) { console.error('Failed to persist disconnect:', error); }
     });
   });
   return event => {

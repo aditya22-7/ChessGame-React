@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { randomUUID } = require('node:crypto');
 
-const emptyState = () => ({ schemaVersion: 1, tournaments: {}, sessions: {}, eventSequence: 0, outbox: [] });
+const emptyState = () => ({ schemaVersion: 1, tournaments: {}, sessions: {}, ratings: {}, ratingResults: {}, eventSequence: 0, outbox: [] });
 
 /** Single-process transaction port. Callbacks must be synchronous and side-effect free.
  * Database adapters must preserve serializable transactions and detached return values.
