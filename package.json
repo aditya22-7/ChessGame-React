@@ -3,7 +3,9 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node index.js",
+		"test": "node --test server/tests/*.test.js",
+		"tournament:config": "node server/tournaments/create-config.js"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
@@ -12,5 +14,8 @@
 		"socket.io": "^4.5.2"
 	},
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"socket.io-client": "^4.8.1"
+	}
 }

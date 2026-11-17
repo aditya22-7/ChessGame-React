@@ -49,6 +49,7 @@ class Manager {
 	}
 
 	createData(side) {
+		if (!this.isGameOn()) return { waiting: true };
 		const freeze = this.toFreeze(side);
 		const name = this.getOthersName(side);
 		return {
@@ -110,7 +111,7 @@ class Manager {
 		socket.removeAllListeners("leavegame");
 		socket.removeAllListeners("pt");
 		socket.removeAllListeners("to");
-		socket.removeAllListeners("disconnect");
+		if (socket.quickPlayDisconnect) socket.off("disconnect", socket.quickPlayDisconnect);
 	}
 
 	init(socket) {
@@ -128,6 +129,7 @@ class Manager {
 		});
 
 		socket.on("pt", (data) => {
+			if (!data || !Number.isInteger(data.row) || !Number.isInteger(data.col) || this.toFreeze(socket.side)) return socket.emit("from", "invalid");
 			if (!this.isGameOn()) return socket.emit("from", "invalid");
 			this.#from = this.#game.board.getTile(data.row, data.col);
 			if (!this.#from) return socket.emit("from", "invalid");
@@ -146,6 +148,7 @@ class Manager {
 		});
 
 		socket.on("to", (data) => {
+			if (!data || !this.#pt || !this.#from || this.toFreeze(socket.side) || this.#game.isOver()) return socket.emit("to", "invalid");
 			for (let v of this.#pt) {
 				if (v.row === data.row && v.col === data.col) {
 					this.#to = this.#game.board.getTile(data.row, data.col);
@@ -162,10 +165,11 @@ class Manager {
 			socket.emit("to", "invalid");
 		});
 
-		socket.on("disconnect", () => {
+		socket.quickPlayDisconnect = () => {
 			console.log("Player disconnected");
 			this.playerLeft(socket);
-		});
+		};
+		socket.on("disconnect", socket.quickPlayDisconnect);
 
 		this.initSocket(socket);
 	}

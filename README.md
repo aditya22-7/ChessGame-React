@@ -1,6 +1,8 @@
 # ChessGame-React
 This chess game is built using React.js on the frontend, Node.js and Express.js on the backend.
 
+Tournament backend setup, rules, APIs, persistence, recovery, and tests are documented in [server/tournaments/README.md](server/tournaments/README.md).
+
 Project Setup : 
 
 First initiate the node Server then run Client as per instructions provided

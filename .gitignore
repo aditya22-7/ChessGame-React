@@ -1,2 +1,4 @@
 node_modules
 chessclient/build
+server/data/
+tournaments.local.json

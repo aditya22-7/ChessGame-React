@@ -8,6 +8,7 @@ class gameManager {
 	static manager(socket) {
 		console.log("Player Connected");
 		socket.on("newgame", (data) => {
+			if (socket.side || socket.data.tournamentPlayerId || typeof data !== "string") return;
 			socket.name = data;
 			this.init(socket);
 		});
@@ -18,15 +19,17 @@ class gameManager {
 	}
 
 	static init(socket) {
-		if (this.#managerQueue.isThereElement()) {
+		// Disconnected waiting players must not leave dead games in the queue.
+		while (this.#managerQueue.isThereElement()) {
 			const man = this.#managerQueue.dequeue();
+			if (man.removed) continue;
 			man.init(socket);
 			this.activateGame(man);
-		} else {
-			const man = new Manager(this);
-			man.init(socket);
-			this.#managerQueue.enqueue(man);
+			return;
 		}
+		const man = new Manager(this);
+		man.init(socket);
+		this.#managerQueue.enqueue(man);
 	}
 
 	static activateGame(man) {
