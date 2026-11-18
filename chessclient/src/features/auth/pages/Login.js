@@ -112,7 +112,7 @@ import {
 	Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { checkLogin } from "../../../services/Controller.js";
 import { useRef } from "react";
 
@@ -159,6 +159,8 @@ const linkSx = {
 
 export default function Login({ tries }) {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const returnTo = location.state?.returnTo?.startsWith('/')&&!location.state.returnTo.startsWith('//') ? location.state.returnTo : '/home';
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [remember, setRemember] = useState(false);
@@ -179,7 +181,7 @@ export default function Login({ tries }) {
 		if (ret.status === "failed")
 			return <Navigate to="/failed" replace={true} />;
 		if (ret.status === "success")
-			return <Navigate to="/newgame" replace={true} />;
+			return <Navigate to={returnTo} replace={true} />;
 		btnClicked.current = false;
 		if (ret.status === "restart") return <Navigate to="/" />;
 	}

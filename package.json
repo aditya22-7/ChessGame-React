@@ -3,14 +3,29 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node index.js",
+		"test": "node --test server/tests/*.test.js",
+		"test:sql": "node server/sql/test-runner.js",
+		"account": "node server/sql/accounts-cli.js",
+		"tournament:config": "node server/tournaments/create-config.js",
+		"db:install": "npm ci --prefix database",
+		"db:build": "npm --prefix database run build",
+		"db:check": "npm --prefix database run check",
+		"db:test": "npm --prefix database test",
+		"db:test:integration": "npm --prefix database run test:integration",
+		"db:migrate": "npm --prefix database run migrate",
+		"db:verify": "npm --prefix database run verify"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
 		"express": "^4.18.1",
 		"express-session": "^1.17.3",
+		"mysql2": "^3.24.6",
 		"socket.io": "^4.5.2"
 	},
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"socket.io-client": "^4.8.1"
+	}
 }

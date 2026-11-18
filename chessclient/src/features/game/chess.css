@@ -1,4 +1,4 @@
-table {
+table.legacy-chess-board {
 	background-color: #607b69;
 	border-style: solid;
 	border-width: 0.2em;
@@ -6,7 +6,7 @@ table {
 	border-collapse: collapse;
 }
 
-td.black {
+.legacy-chess-board td.black {
 	background-color: #607b69;
 	color: #f4f0e6;
 	cursor: default;
@@ -18,7 +18,7 @@ td.black {
 	border-color: #607b69;
 }
 
-td.white {
+.legacy-chess-board td.white {
 	background-color: #e8dfca;
 	color: #172027;
 	cursor: default;
@@ -30,7 +30,7 @@ td.white {
 	border-color: #e8dfca;
 }
 
-td.selected {
+.legacy-chess-board td.selected {
 	background: linear-gradient(
 		135deg,
 		#f4d98a 0%,
@@ -50,18 +50,18 @@ td.selected {
 		inset 0 -1px 0 rgba(23, 32, 39, 0.25);
 }
 
-span.piece {
+.legacy-chess-board span.piece {
 	cursor: pointer;
 }
 
-th.edge {
+.legacy-chess-board th.edge {
 	width: 1.7em;
 	height: 1.7em;
 	text-align: center;
 	color: #f4f0e6;
 }
 
-td.displayrow {
+.legacy-chess-board td.displayrow {
 	background-color: inherit;
 	width: 1em;
 	height: 2em;
@@ -76,18 +76,18 @@ div.boardstyle {
 }
 
 /* Outline the playable 8x8 grid without enclosing the coordinates. */
-tbody tr:first-child td:nth-child(n + 2):nth-child(-n + 9) {
+.legacy-chess-board tbody tr:first-child td:nth-child(n + 2):nth-child(-n + 9) {
 	border-top: 2px solid beige;
 }
 
-tbody tr:last-child td:nth-child(n + 2):nth-child(-n + 9) {
+.legacy-chess-board tbody tr:last-child td:nth-child(n + 2):nth-child(-n + 9) {
 	border-bottom: 2px solid beige;
 }
 
-tbody tr td:nth-child(2) {
+.legacy-chess-board tbody tr td:nth-child(2) {
 	border-left: 2px solid beige;
 }
 
-tbody tr td:nth-child(9) {
+.legacy-chess-board tbody tr td:nth-child(9) {
 	border-right: 2px solid beige;
 }

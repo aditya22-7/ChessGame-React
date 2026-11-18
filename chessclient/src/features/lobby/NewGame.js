@@ -6,6 +6,8 @@ import {
   disconnect,
   initSocket,
   logout,
+  fetchPlayerRating,
+  fetchRatingHistory,
 } from "../../services/Controller";
 import { useLogin } from "../auth/LoginProvider";
 import LoaderText from "../../components/LoaderText";
@@ -13,7 +15,6 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import NorthEastIcon from "@mui/icons-material/NorthEast";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
@@ -29,56 +30,6 @@ const FAINT = "rgba(244, 240, 230, 0.45)";
 const BORDER = "rgba(244, 240, 230, 0.09)";
 const PANEL = "rgba(244, 240, 230, 0.03)";
 const TEAL = "#8FB3A6";
-
-const player = {
-  name: "",
-  initials: "",
-  matches: 0,
-  rating: "1,842",
-};
-
-const games = [
-  {
-    tournament: "Autumn Masters",
-    opponent: "Mira Shah",
-    color: "White",
-    timing: "10 + 0",
-    won: true,
-    change: 18,
-  },
-  {
-    tournament: "City Open · R4",
-    opponent: "Dev Patel",
-    color: "Black",
-    timing: "15 + 10",
-    won: false,
-    change: 7,
-  },
-  {
-    tournament: "Midnight Cup",
-    opponent: "Sana Iyer",
-    color: "White",
-    timing: "5 + 3",
-    won: true,
-    change: 12,
-  },
-  {
-    tournament: "Winter Classic",
-    opponent: "Arjun Rao",
-    color: "Black",
-    timing: "10 + 5",
-    won: true,
-    change: 9,
-  },
-  {
-    tournament: "Rapid Arena",
-    opponent: "Leah Thomas",
-    color: "White",
-    timing: "3 + 2",
-    won: false,
-    change: 5,
-  },
-];
 
 const navItems = [
   { label: "Home", icon: HomeOutlinedIcon },
@@ -98,6 +49,7 @@ const headerCell = {
 };
 
 function Sidebar({ collapsed, onToggle, onLogout }) {
+  const navigate = useNavigate();
   return (
     <Box
       component="aside"
@@ -164,7 +116,7 @@ function Sidebar({ collapsed, onToggle, onLogout }) {
           return (
             <Box
               key={item.label}
-              onClick={item.label === "Logout" ? onLogout : undefined}
+              onClick={item.label === "Logout" ? onLogout : () => navigate(item.label === 'Tournaments' ? '/tournaments' : item.label === 'Profile' ? '/profile/rating' : '/home')}
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -283,7 +235,7 @@ function StatCard({ label, value, caption, serif = true, accent }) {
   );
 }
 
-function ResultPill({ won }) {
+function ResultPill({ won, drawn }) {
   return (
     <Box
       component="span"
@@ -294,11 +246,11 @@ function ResultPill({ won }) {
         borderRadius: "999px",
         fontFamily: SANS,
         fontSize: 11.5,
-        color: won ? "#9CC9A8" : "#D9A19A",
-        background: won ? "rgba(76, 140, 98, 0.18)" : "rgba(170, 80, 70, 0.18)",
+        color: drawn ? GOLD : won ? "#9CC9A8" : "#D9A19A",
+        background: drawn ? "rgba(199,164,90,0.15)" : won ? "rgba(76, 140, 98, 0.18)" : "rgba(170, 80, 70, 0.18)",
       }}
     >
-      {won ? "Won" : "Lost"}
+      {drawn ? "Draw" : won ? "Won" : "Lost"}
     </Box>
   );
 }
@@ -309,8 +261,31 @@ export default function NewGame({ name }) {
   const [collapsed, setCollapsed] = useState(false);
   const [status, setStatus] = useState("");
   const [loader, setLoader] = useState(false);
-  player.name = name;
-  player.initials = name[0].toUpperCase();
+  const [profile, setProfile] = useState(null);
+  const [history, setHistory] = useState([]);
+  const [ratingError, setRatingError] = useState("");
+  const player = { name, initials: name[0].toUpperCase(),
+    matches: profile?.ratedGames ?? "—", rating: profile?.rating?.toLocaleString() ?? "—" };
+  const games = history.map(g => ({ id: g.gameId, tournament: g.tournamentName ?? "Quick play",
+    opponent: g.opponentId, color: g.side === "white" ? "White" : "Black", timing: "—",
+    won: g.score === 1, drawn: g.score === 0.5, change: g.delta }));
+
+  useEffect(() => {
+    let controller;
+    const refresh = () => {
+      controller?.abort();
+      const request = new AbortController();
+      controller = request;
+      Promise.all([fetchPlayerRating("me", request.signal), fetchRatingHistory(5, request.signal)])
+        .then(([current, recent]) => {
+          if (!request.signal.aborted) { setProfile(current); setHistory(recent.games); setRatingError(""); }
+        })
+        .catch(() => { if (!request.signal.aborted) setRatingError("Rating data is unavailable. Refresh to try again."); });
+    };
+    refresh();
+    window.addEventListener("focus", refresh);
+    return () => { controller?.abort(); window.removeEventListener("focus", refresh); };
+  }, [name]);
 
   const onNewGame = () => {
     setStatus("Created New Game, Searching for another Player...");
@@ -433,15 +408,15 @@ export default function NewGame({ name }) {
             <Box sx={{ display: "flex", gap: 1.75, mb: 4.5 }}>
               <StatCard label="Player" value={player.name} caption="Member" />
               <StatCard
-                label="Matches played"
+                label="Rated games"
                 value={player.matches}
-                caption="This season"
+                caption="All time"
                 serif={false}
               />
               <StatCard
                 label="Current rating"
                 value={player.rating}
-                caption="Rapid"
+                caption="Elo"
                 serif={false}
                 accent
               />
@@ -459,7 +434,7 @@ export default function NewGame({ name }) {
               <Typography
                 sx={{ fontFamily: SERIF, fontSize: 20, fontWeight: 500 }}
               >
-                Recent games
+                Recent rated games
               </Typography>
               <Box
                 sx={{
@@ -473,7 +448,7 @@ export default function NewGame({ name }) {
                   fontWeight: 600,
                 }}
               >
-                View all <NorthEastIcon sx={{ fontSize: 12 }} />
+                Latest 5
               </Box>
             </Box>
 
@@ -511,9 +486,13 @@ export default function NewGame({ name }) {
               </Box>
 
               {/* Rows */}
+              {ratingError && <Typography role="alert" sx={{ p: 2, color: "#D9A19A" }}>{ratingError}</Typography>}
+              {!ratingError && games.length === 0 && <Typography sx={{ p: 2, color: MUTED }}>
+                {profile ? "No rated games yet." : "Loading rating data…"}
+              </Typography>}
               {games.map((g, i) => (
                 <Box
-                  key={g.tournament}
+                  key={g.id}
                   sx={{
                     display: "grid",
                     gridTemplateColumns: "1.6fr 1.3fr 1.2fr 1fr 1fr 1fr",
@@ -557,7 +536,7 @@ export default function NewGame({ name }) {
                     {g.timing}
                   </Typography>
                   <Box>
-                    <ResultPill won={g.won} />
+                    <ResultPill won={g.won} drawn={g.drawn} />
                   </Box>
                   <Box
                     sx={{
@@ -567,15 +546,15 @@ export default function NewGame({ name }) {
                       color: MUTED,
                     }}
                   >
-                    {g.won ? (
+                    {g.change > 0 ? (
                       <ArrowUpwardIcon sx={{ fontSize: 12 }} />
-                    ) : (
+                    ) : g.change < 0 ? (
                       <ArrowDownwardIcon sx={{ fontSize: 12 }} />
-                    )}
+                    ) : null}
                     <Typography
                       sx={{ fontFamily: SANS, fontSize: 12.5, color: MUTED }}
                     >
-                      {g.change}
+                      {g.change > 0 ? `+${g.change}` : g.change}
                     </Typography>
                   </Box>
                 </Box>

@@ -1,2 +1,9 @@
 node_modules
 chessclient/build
+server/data/
+tournaments.local.json
+.env
+.env.*
+!.env.example
+chessclient/test-results/
+chessclient/playwright-report/
